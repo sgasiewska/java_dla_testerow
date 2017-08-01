@@ -7,22 +7,15 @@ public class MyFirstProgram {
     hello("user");
     hello("Sandra");
 
-    double l= 5;
-    System.out.println("Pole kwadratu o boku "+l+ "="+area(l));
-
-    double a=3;
-    double b=4;
-    System.out.println("Pole prostokąta o bokach "+a+ " i "+b+"="+area(a,b));
+    Square s=new Square(5);
+    System.out.println("Pole kwadratu o boku "+s.l+ "="+s.area());
+    Rectangle r=new Rectangle(3,4);
+    System.out.println("Pole prostokąta o bokach "+r.a+ " i "+r.b+"="+r.area());
 
   }
   public static void hello(String somebody){
     System.out.println("Hello,"+somebody+ "!");
 
   }
-  public static double area (double l){
-    return l*l;
-  }
-  public static double area (double a, double b){
-    return a*b;
-  }
+
 }
