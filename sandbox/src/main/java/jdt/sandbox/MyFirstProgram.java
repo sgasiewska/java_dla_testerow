@@ -12,6 +12,7 @@ public class MyFirstProgram {
     Rectangle r=new Rectangle(3,4);
     System.out.println("Pole prostokąta o bokach "+r.a+ " i "+r.b+"="+r.area());
 
+
   }
   public static void hello(String somebody){
     System.out.println("Hello,"+somebody+ "!");
