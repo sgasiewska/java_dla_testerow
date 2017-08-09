@@ -1,5 +1,6 @@
-package jdt.addressbook;
+package jdt.addressbook.tests;
 
+import jdt.addressbook.ContactData;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.AfterMethod;
