@@ -1,7 +1,6 @@
 package jdt.addressbook.tests;
 
-import jdt.addressbook.GroupData;
-import jdt.addressbook.model.TestBase;
+import jdt.addressbook.model.GroupData;
 import org.testng.annotations.Test;
 
 public class GroupCreationTests extends TestBase {

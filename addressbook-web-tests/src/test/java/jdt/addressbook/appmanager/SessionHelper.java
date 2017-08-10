@@ -11,11 +11,7 @@ public class SessionHelper extends HelperBase {
   }
   public void login(String username, String password) {
 
-  //  wd.findElement(By.id("content")).click();
-  //  wd.findElement(By.id("LoginForm")).click();
-   // wd.findElement(By.name("user")).click();
-   // wd.findElement(By.id("LoginForm")).click();
-  //  wd.findElement(By.id("content")).click();
+
     type(By.name("user"),username);
     type(By.name("pass"),password);
 

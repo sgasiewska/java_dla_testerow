@@ -1,6 +1,6 @@
 package jdt.addressbook.appmanager;
 
-import jdt.addressbook.GroupData;
+import jdt.addressbook.model.GroupData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;
 

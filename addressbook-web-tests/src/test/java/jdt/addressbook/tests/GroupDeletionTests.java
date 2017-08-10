@@ -1,6 +1,5 @@
 package jdt.addressbook.tests;
 
-import jdt.addressbook.model.TestBase;
 import org.testng.annotations.Test;
 
 

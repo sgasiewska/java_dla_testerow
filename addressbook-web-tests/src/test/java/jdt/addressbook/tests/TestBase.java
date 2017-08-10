@@ -1,4 +1,4 @@
-package jdt.addressbook.model;
+package jdt.addressbook.tests;
 
 import jdt.addressbook.appmanager.ApplicationManager;
 import org.testng.annotations.AfterMethod;
@@ -19,4 +19,7 @@ public class TestBase {
     app.stop();
   }
 
+  public ApplicationManager getApp() {
+    return app;
+  }
 }
