@@ -1,6 +1,7 @@
 package jdt.addressbook.appmanager;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.BrowserType;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -30,6 +31,7 @@ public class ApplicationManager {
     if (Objects.equals(browser, BrowserType.FIREFOX)){
       wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true));
     } else if (browser.equals(BrowserType.CHROME)){
+      wd= new ChromeDriver();
 
     } else if (Objects.equals(browser, BrowserType.IE)){
       wd= new InternetExplorerDriver();
