@@ -1,12 +1,11 @@
 package jdt.addressbook.appmanager;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.BrowserType;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+
 
 
 import java.util.Objects;
@@ -28,12 +27,9 @@ public class ApplicationManager {
 
 
   public void init() {
-   // String browser = BrowserType.CHROME;
     if (Objects.equals(browser, BrowserType.FIREFOX)){
       wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true));
     } else if (browser.equals(BrowserType.CHROME)){
-     // wd = new ChromeDriver();
-     // wd = new ChromeDriver(new ChromeOptions().setBinary("C:/Program Files/Mozilla Firefox ESR/firefox.exe"));
 
     } else if (Objects.equals(browser, BrowserType.IE)){
       wd= new InternetExplorerDriver();
