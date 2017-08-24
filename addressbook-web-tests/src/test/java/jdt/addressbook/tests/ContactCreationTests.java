@@ -1,8 +1,11 @@
 package jdt.addressbook.tests;
 
 import jdt.addressbook.model.ContactData;
+import jdt.addressbook.model.GroupData;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import java.util.List;
 
 public class ContactCreationTests extends TestBase {
 
