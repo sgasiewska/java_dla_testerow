@@ -16,7 +16,7 @@ public class ContactData {
     this.phome = phome;
     this.email = email;
     this.group = group;
-    this.id = 0;
+    this.id = Integer.MAX_VALUE;
   }
 
   public ContactData(int id, String firstname, String lastname, String address, String phome, String email, String group) {
@@ -53,9 +53,6 @@ public class ContactData {
     return group;
   }
 
-  public int getId() {
-    return id;
-  }
 
   @Override
   public boolean equals(Object o) {
@@ -64,24 +61,26 @@ public class ContactData {
 
     ContactData that = (ContactData) o;
 
-    if (id != that.id) return false;
     return firstname != null ? firstname.equals(that.firstname) : that.firstname == null;
   }
 
   @Override
   public int hashCode() {
-    int result = firstname != null ? firstname.hashCode() : 0;
-    result = 31 * result + id;
-    return result;
+    return firstname != null ? firstname.hashCode() : 0;
   }
 
-  @Override
-  public String toString() {
-    return "ContactData{" +
-            "firstname='" + firstname + '\'' +
-            ", id='" + id + '\'' +
-            '}';
+  public int getId() {
+
+    return id;
   }
+
+    @Override
+    public String toString () {
+      return "ContactData{" +
+              "firstname='" + firstname + '\'' +
+              ", id='" + id + '\'' +
+              '}';
+    }
 
   public void setId(int id) {
     this.id = id;
