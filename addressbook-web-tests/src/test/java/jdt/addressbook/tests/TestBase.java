@@ -1,22 +1,21 @@
 package jdt.addressbook.tests;
 
 import jdt.addressbook.appmanager.ApplicationManager;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-//import sun.plugin2.util.BrowserType;
+import org.testng.annotations.AfterSuite;
 import org.openqa.selenium.remote.BrowserType;
+import org.testng.annotations.BeforeSuite;
 
 public class TestBase {
 
-  protected final ApplicationManager app = new ApplicationManager(BrowserType.CHROME);
+  protected static final ApplicationManager app = new ApplicationManager(BrowserType.CHROME);
 
-  @BeforeMethod
+  @BeforeSuite
   public void setUp() throws Exception {
     app.init();
 
   }
 
-  @AfterMethod
+  @AfterSuite
   public void tearDown() {
     app.stop();
   }
