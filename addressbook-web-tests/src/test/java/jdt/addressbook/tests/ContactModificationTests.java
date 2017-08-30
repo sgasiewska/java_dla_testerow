@@ -4,15 +4,14 @@ import jdt.addressbook.model.ContactData;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import java.util.Comparator;
-import java.util.List;
+
 import java.util.Set;
 
 public class ContactModificationTests extends TestBase {
   @BeforeMethod
   public void ensurePreconditions() {
     app.goTo().contactPage();
-    if (app.contact().list().size()==0) {
+    if (app.contact().all().size()==0) {
       app.contact().create(new ContactData().withFirstname("name1").withLastname("ln1")
               .withAddress( "address").withPhome("123456789").withEmail("test@test.pl").withGroup( "test1"), true);
     }

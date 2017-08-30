@@ -104,20 +104,6 @@ public class ContactHelper extends HelperBase{
     return wd.findElements(By.name("selected[]")).size();
   }
 
-  public List<ContactData> list() {
-    List <ContactData> contacts = new ArrayList<ContactData>();
-   List<WebElement>wiersze= wd.findElements(By.xpath("//table[@id='maintable']//tr[@name='entry']"));
-
-    for (WebElement element:wiersze){
-      List<WebElement> cells = element.findElements(By.tagName("td"));
-
-      String lastname = cells.get(1).getText();
-      String firstname = cells.get(2).getText();
-      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      contacts.add(new ContactData().withId(id).withFirstname(firstname).withLastname(lastname));
-    }
-    return contacts;
-  }
   public Set<ContactData> all() {
     Set <ContactData> contacts = new HashSet<ContactData>();
     List<WebElement>wiersze= wd.findElements(By.xpath("//table[@id='maintable']//tr[@name='entry']"));
