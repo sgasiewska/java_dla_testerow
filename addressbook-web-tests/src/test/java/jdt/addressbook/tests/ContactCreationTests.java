@@ -1,12 +1,10 @@
 package jdt.addressbook.tests;
 
 import jdt.addressbook.model.ContactData;
-import org.testng.Assert;
+import jdt.addressbook.model.Contacts;
 import org.testng.annotations.Test;
-import java.util.Comparator;
-
-import java.util.List;
-import java.util.Set;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.*;
 
 public class ContactCreationTests extends TestBase {
 
@@ -15,17 +13,16 @@ public class ContactCreationTests extends TestBase {
   public void testContactCreation() {
 
     app.goTo().contactPage();
-    Set<ContactData> before= app.contact().all();
+    Contacts before= app.contact().all();
     ContactData contact =new ContactData().withFirstname("name1").withLastname("test").withAddress("address").withEmail("test@test.pl").withGroup("test1");
     app.contact().create(contact, true);
-    Set<ContactData> after = app.contact().all();
-    Assert.assertEquals(after.size(), before.size() +1);
+    Contacts after = app.contact().all();
+    assertThat(after.size(),equalTo(before.size()+1));
 
-    contact.withId(after.stream().mapToInt((g)->g.getId()).max().getAsInt());
+    assertThat(after, equalTo(
+            before.withAdded(contact.withId(after.stream().mapToInt((g)->g.getId()).max().getAsInt()))));
 
-    before.add(contact);
 
-     Assert.assertEquals(before, after);
   }
 
 }

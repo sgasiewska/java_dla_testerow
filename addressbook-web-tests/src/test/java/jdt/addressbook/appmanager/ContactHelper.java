@@ -1,17 +1,14 @@
 package jdt.addressbook.appmanager;
 
 import jdt.addressbook.model.ContactData;
+import jdt.addressbook.model.Contacts;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
-
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class ContactHelper extends HelperBase{
 
@@ -80,11 +77,7 @@ public class ContactHelper extends HelperBase{
     submitContactCreation();
     returnToContactPage();
   }
-  public void delete(int index) {
-   selectContact(index);
-   deleteSelectedContact();
-   submitContactDeletion();
-  }
+
   public void delete(ContactData contact) {
     selectContactById(contact.getId());
     deleteSelectedContact();
@@ -104,8 +97,8 @@ public class ContactHelper extends HelperBase{
     return wd.findElements(By.name("selected[]")).size();
   }
 
-  public Set<ContactData> all() {
-    Set <ContactData> contacts = new HashSet<ContactData>();
+  public Contacts all() {
+    Contacts contacts = new Contacts();
     List<WebElement>wiersze= wd.findElements(By.xpath("//table[@id='maintable']//tr[@name='entry']"));
 
     for (WebElement element:wiersze){

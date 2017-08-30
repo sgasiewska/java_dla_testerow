@@ -1,11 +1,16 @@
 package jdt.addressbook.tests;
 
 import jdt.addressbook.model.ContactData;
+import jdt.addressbook.model.Contacts;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.Set;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.testng.Assert.assertEquals;
 
 public class ContactModificationTests extends TestBase {
   @BeforeMethod
@@ -20,21 +25,15 @@ public class ContactModificationTests extends TestBase {
   @Test
   public void testContactModification() {
 
-    Set<ContactData> before = app.contact().all();
-
+    Contacts before = app.contact().all();
     ContactData modifiedContact = before.iterator().next();
-
     ContactData contact = new ContactData().withId(modifiedContact.getId()).withFirstname("name1").withLastname("ln1")
             .withAddress( "address").withPhome("123456789").withEmail("test@test.pl");
     app.contact().initContactModificationById(modifiedContact.getId());
     app.contact().modifi(contact);
-    Set<ContactData> after = app.contact().all();
-    Assert.assertEquals(after.size(), before.size() );
-    before.remove(modifiedContact);
-    before.add(contact);
-
-    Assert.assertEquals(before,after);
-
+    Contacts after = app.contact().all();
+    assertEquals(after.size(),before.size());
+    assertThat(after, equalTo(before.without(modifiedContact).withAdded(contact)));
   }
 
 
