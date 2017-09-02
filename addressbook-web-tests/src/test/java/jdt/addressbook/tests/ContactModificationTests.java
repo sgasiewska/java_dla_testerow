@@ -30,8 +30,8 @@ public class ContactModificationTests extends TestBase {
     ContactData contact = new ContactData().withId(modifiedContact.getId()).withFirstname("name1").withLastname("ln1")
             .withAddress( "address").withPhome("123456789").withEmail("test@test.pl");
     app.contact().initContactModificationById(modifiedContact.getId());
-    assertThat(app.contact().count(),equalTo(before.size()));
     app.contact().modifi(contact);
+    assertThat(app.contact().count(),equalTo(before.size()));
     Contacts after = app.contact().all();
     assertThat(after, equalTo(before.without(modifiedContact).withAdded(contact)));
   }
