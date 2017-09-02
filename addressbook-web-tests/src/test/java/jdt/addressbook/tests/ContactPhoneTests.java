@@ -1,6 +1,7 @@
 package jdt.addressbook.tests;
 
 import jdt.addressbook.model.ContactData;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.Arrays;
@@ -11,6 +12,16 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
 
 public class ContactPhoneTests extends TestBase {
+  @BeforeMethod
+  public void ensurePreconditions() {
+    app.goTo().contactPage();
+    if (app.contact().all().size()==0) {
+      app.contact().create(new ContactData().withFirstname("name1").withLastname("ln1")
+              .withAddress( "address").withPhome("123456789").withEmail("test@test.pl").withGroup( "test1")
+              .withHomePhone("+1111").withMobiePhone("(11)999").withWorkPhone("22 22 22"), true);
+    }
+  }
+
   @Test
   public void testContactPhones(){
     app.goTo().contactPage();
