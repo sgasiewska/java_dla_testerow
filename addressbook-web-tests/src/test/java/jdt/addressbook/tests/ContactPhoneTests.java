@@ -3,11 +3,8 @@ package jdt.addressbook.tests;
 import jdt.addressbook.model.ContactData;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 import java.util.Arrays;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
-
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
 
