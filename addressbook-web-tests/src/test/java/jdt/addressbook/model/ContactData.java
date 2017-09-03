@@ -1,5 +1,7 @@
 package jdt.addressbook.model;
 
+import java.io.File;
+
 public class ContactData {
   private int id = Integer.MAX_VALUE;
   private String firstname;
@@ -17,6 +19,7 @@ public class ContactData {
   private String mail3;
   private String allMails;
   private String allInformations;
+  private File photo;
 
   public String getAllInformations() {
     return allInformations;
@@ -24,6 +27,15 @@ public class ContactData {
 
   public ContactData withAllInformations(String allInformations) {
     this.allInformations = allInformations;
+    return this;
+  }
+
+  public File getPhoto() {
+    return photo;
+  }
+
+  public ContactData withPhoto(File photo) {
+    this.photo = photo;
     return this;
   }
 
