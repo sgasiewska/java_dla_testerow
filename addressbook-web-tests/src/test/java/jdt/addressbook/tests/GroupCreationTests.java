@@ -12,11 +12,16 @@ import java.io.*;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.*;
 
 public class GroupCreationTests extends TestBase {
+
+ // Logger logger= LoggerFactory.getLogger
+
   @DataProvider
   public Iterator<Object[]> validGroupsFromXml() throws IOException {
     try(BufferedReader reader = new BufferedReader(new FileReader("src/test/resources/groups.xml"))){
