@@ -40,8 +40,6 @@ public class ContactCreationTests extends TestBase {
     app.goTo().contactPage();
     Contacts before= app.contact().all();
     File photo=new File("src/test/resources/kot.png");
- //   ContactData contact =new ContactData().withFirstname("name1").withLastname("test").
-       //     withAddress("address").withEmail("test@test.pl").withPhoto(photo);
     app.contact().create(contact, true);
     assertThat(app.contact().count(),equalTo(before.size()+1));
     Contacts after = app.contact().all();

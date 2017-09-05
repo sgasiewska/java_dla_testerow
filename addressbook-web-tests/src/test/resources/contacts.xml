@@ -5,6 +5,7 @@
     <lastname>test 0</lastname>
     <address>address 0</address>
     <mail>mail0@test.pl</mail>
+    <photo>src\test\resources\kot.png</photo>
   </jdt.addressbook.model.ContactData>
   <jdt.addressbook.model.ContactData>
     <id>2147483647</id>
@@ -12,6 +13,7 @@
     <lastname>test 1</lastname>
     <address>address 1</address>
     <mail>mail1@test.pl</mail>
+    <photo>src\test\resources\kot.png</photo>
   </jdt.addressbook.model.ContactData>
   <jdt.addressbook.model.ContactData>
     <id>2147483647</id>
@@ -19,5 +21,6 @@
     <lastname>test 2</lastname>
     <address>address 2</address>
     <mail>mail2@test.pl</mail>
+    <photo>src\test\resources\kot.png</photo>
   </jdt.addressbook.model.ContactData>
 </list>

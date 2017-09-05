@@ -25,6 +25,7 @@ public class ContactDataGenerators {
 
 public static void main(String [] args) throws IOException {
   ContactDataGenerators generator = new ContactDataGenerators();
+  File file = new File(args[1]);
   JCommander jCommander = new JCommander(generator);
   try{
     jCommander.parse(args);
@@ -50,16 +51,19 @@ public static void main(String [] args) throws IOException {
     XStream xstream = new XStream();
     xstream.processAnnotations(ContactData.class);
     String xml = xstream.toXML(contacts);
+    System.out.println(new File(".").getAbsolutePath());
     Writer writer= new FileWriter(file);
     writer.write(xml);
     writer.close();
   }
   private List<ContactData> generateContacts(int count) {
+    File photo = new File("src/test/resources/kot.png");
     List<ContactData> contacts =new ArrayList<ContactData>();
     for(int i =0;i<count;i++){
       contacts.add(new ContactData().withFirstname(String.format("name %s",i))
               .withLastname(String.format("test %s",i)).withAddress(String.format("address %s",i))
-              .withMail(String.format("mail%s@test.pl",i)));
+              .withMail(String.format("mail%s@test.pl",i))
+              .withPhoto(photo));
     }
     return contacts;
   }
@@ -69,7 +73,7 @@ public static void main(String [] args) throws IOException {
     Writer writer =new FileWriter(file);
     for (ContactData contact :contacts){
       writer.write((String.format("%s;%s;%s\n",contact.getFirstname(), contact.getLastname(),
-              contact.getAddress(), contact.getMail())));
+              contact.getAddress(), contact.getMail(), contact.getPhoto())));
     }
     writer.close();
   }
