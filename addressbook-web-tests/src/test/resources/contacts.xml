@@ -1,23 +1,23 @@
 <list>
   <jdt.addressbook.model.ContactData>
     <id>2147483647</id>
-    <firstname>name1 0</firstname>
+    <firstname>name 0</firstname>
     <lastname>test 0</lastname>
     <address>address 0</address>
-    <email>mail 0</email>
+    <mail>mail0@test.pl</mail>
   </jdt.addressbook.model.ContactData>
   <jdt.addressbook.model.ContactData>
     <id>2147483647</id>
-    <firstname>name1 1</firstname>
+    <firstname>name 1</firstname>
     <lastname>test 1</lastname>
     <address>address 1</address>
-    <email>mail 1</email>
+    <mail>mail1@test.pl</mail>
   </jdt.addressbook.model.ContactData>
   <jdt.addressbook.model.ContactData>
     <id>2147483647</id>
-    <firstname>name1 2</firstname>
+    <firstname>name 2</firstname>
     <lastname>test 2</lastname>
     <address>address 2</address>
-    <email>mail 2</email>
+    <mail>mail2@test.pl</mail>
   </jdt.addressbook.model.ContactData>
 </list>

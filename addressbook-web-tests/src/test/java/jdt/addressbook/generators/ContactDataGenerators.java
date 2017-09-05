@@ -57,9 +57,9 @@ public static void main(String [] args) throws IOException {
   private List<ContactData> generateContacts(int count) {
     List<ContactData> contacts =new ArrayList<ContactData>();
     for(int i =0;i<count;i++){
-      contacts.add(new ContactData().withFirstname(String.format("name1 %s",i))
+      contacts.add(new ContactData().withFirstname(String.format("name %s",i))
               .withLastname(String.format("test %s",i)).withAddress(String.format("address %s",i))
-              .withEmail((String.format("mail %s",i))));
+              .withMail(String.format("mail%s@test.pl",i)));
     }
     return contacts;
   }
@@ -69,7 +69,7 @@ public static void main(String [] args) throws IOException {
     Writer writer =new FileWriter(file);
     for (ContactData contact :contacts){
       writer.write((String.format("%s;%s;%s\n",contact.getFirstname(), contact.getLastname(),
-              contact.getAddress(), contact.getEmail())));
+              contact.getAddress(), contact.getMail())));
     }
     writer.close();
   }
