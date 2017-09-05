@@ -1,26 +1,23 @@
 <list>
-  <jdt.addressbook.model.ContactData>
-    <id>2147483647</id>
+  <contact>
     <firstname>name 0</firstname>
     <lastname>test 0</lastname>
     <address>address 0</address>
     <mail>mail0@test.pl</mail>
     <photo>src\test\resources\kot.png</photo>
-  </jdt.addressbook.model.ContactData>
-  <jdt.addressbook.model.ContactData>
-    <id>2147483647</id>
+  </contact>
+  <contact>
     <firstname>name 1</firstname>
     <lastname>test 1</lastname>
     <address>address 1</address>
     <mail>mail1@test.pl</mail>
     <photo>src\test\resources\kot.png</photo>
-  </jdt.addressbook.model.ContactData>
-  <jdt.addressbook.model.ContactData>
-    <id>2147483647</id>
+  </contact>
+  <contact>
     <firstname>name 2</firstname>
     <lastname>test 2</lastname>
     <address>address 2</address>
     <mail>mail2@test.pl</mail>
     <photo>src\test\resources\kot.png</photo>
-  </jdt.addressbook.model.ContactData>
+  </contact>
 </list>
