@@ -22,7 +22,7 @@ import static org.hamcrest.MatcherAssert.*;
 
 public class GroupCreationTests extends TestBase {
 
-Logger logger= LoggerFactory.getLogger;
+//Logger logger= LoggerFactory.getLogger();
 
   @DataProvider
   public Iterator<Object[]> validGroupsFromXml() throws IOException {
