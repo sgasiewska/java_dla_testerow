@@ -1,5 +1,6 @@
 package jdt.addressbook.tests;
 
+import jdt.addressbook.model.ContactData;
 import jdt.addressbook.model.GroupData;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -36,9 +37,12 @@ public class HbConnectionTests {
   public void testBbConnection(){
     Session session = sessionFactory.openSession();
     session.beginTransaction();
-    List result = session.createQuery( "from GroupData" ).list();
-    for ( GroupData group : (List <GroupData>) result) {
-      System.out.println( group);
+  //  List result = session.createQuery( "from GroupData" ).list();
+    List result = session.createQuery( "from ContactData where deprecated= '0000-00-00'" ).list();
+ //   for ( GroupData group : (List <GroupData>) result) {
+ //     System.out.println( group);
+      for ( ContactData contact : (List <ContactData>) result) {
+        System.out.println( contact);
     }
     session.getTransaction().commit();
     session.close();

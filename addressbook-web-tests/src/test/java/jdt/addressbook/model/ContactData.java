@@ -3,35 +3,80 @@ package jdt.addressbook.model;
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.hibernate.annotations.Type;
 
+import javax.persistence.*;
 import java.io.File;
 
 @XStreamAlias("contact")
-
+@Entity
+@Table(name = "addressbook")
 public class ContactData {
   @XStreamOmitField
+  @Id
+  @Column(name = "id")
   private int id = Integer.MAX_VALUE;
   @Expose
+  @Column(name = "firstname")
   private String firstname;
   @Expose
+  @Column(name = "lastname")
   private String lastname;
   @Expose
+  @Column(name = "address")
+  @Type(type = "text")
   private String address;
+  @Transient
   private String phome;
-  @Expose
-  private String email;
+
+  @Transient
   private String group;
+
+  @Column(name = "home")
+  @Type(type = "text")
   private String homePhone;
+
+  @Column(name = "mobile")
+  @Type(type = "text")
   private String mobilePhone;
+
+  @Column(name = "work")
+  @Type(type = "text")
   private String workPhone;
+
+  @Transient
   private String allPhones;
+
   @Expose
+  @Column(name = "email")
+  @Type(type = "text")
   private String mail;
+
+  @Column(name = "email2")
+  @Type(type = "text")
   private String mail2;
+
+  @Column(name = "email3")
+  @Type(type = "text")
   private String mail3;
+
+  @Transient
   private String allMails;
+  @Transient
   private String allInformations;
-  private File photo;
+
+  @Column(name = "photo")
+  @Type(type = "text")
+  private String photo;
+
+  @Override
+  public String toString() {
+    return "ContactData{" +
+            "id=" + id +
+            ", firstname='" + firstname + '\'' +
+            ", lastname='" + lastname + '\'' +
+            '}';
+  }
 
   public String getAllInformations() {
     return allInformations;
@@ -43,11 +88,11 @@ public class ContactData {
   }
 
   public File getPhoto() {
-    return photo;
+    return new File (photo);
   }
 
   public ContactData withPhoto(File photo) {
-    this.photo = photo;
+    this.photo = photo.getPath();
     return this;
   }
 
@@ -117,9 +162,6 @@ public class ContactData {
     return phome;
   }
 
-  public String getEmail() {
-    return email;
-  }
 
   public String getGroup() {
     return group;
@@ -143,14 +185,6 @@ public class ContactData {
   }
 
 
-  @Override
-  public String toString() {
-    return "ContactData{" +
-            "firstname='" + firstname + '\'' +
-            ", lastname='" + lastname + '\'' +
-            ", id=" + id + '\'' +
-            '}';
-  }
   public ContactData withMail3(String mail3) {
     this.mail3 = mail3;
     return this;
@@ -203,10 +237,6 @@ public class ContactData {
     return this;
   }
 
-  public ContactData withEmail(String email) {
-    this.email = email;
-    return this;
-  }
 
   public ContactData withGroup(String group) {
     this.group = group;

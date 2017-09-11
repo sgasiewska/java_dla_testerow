@@ -46,6 +46,8 @@
 
 
         <mapping class="jdt.addressbook.model.GroupData"/>
+        <mapping class="jdt.addressbook.model.ContactData"/>
+
 
     </session-factory>
 
