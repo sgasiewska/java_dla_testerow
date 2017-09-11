@@ -18,3 +18,4 @@ sandbox/out/production/classes/jdt/sandbox/MyFirstProgram.class
 sandbox/out/production/classes/jdt/sandbox/MyFirstProgram.class
 *.class
 sandbox/out/production/classes/jdt/sandbox/MyFirstProgram.class
+*.log
