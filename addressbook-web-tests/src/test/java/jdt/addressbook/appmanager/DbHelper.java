@@ -26,7 +26,6 @@ public class DbHelper {
   public Groups groups(){
     Session session = sessionFactory.openSession();
     session.beginTransaction();
-    //  List result = session.createQuery( "from GroupData" ).list();
     List result = session.createQuery( "from GroupData" ).list();
     session.getTransaction().commit();
     session.close();
@@ -36,7 +35,7 @@ public class DbHelper {
   public Contacts contacts(){
     Session session = sessionFactory.openSession();
     session.beginTransaction();
-    List result = session.createQuery( "from ContactData" ).list();
+    List <ContactData> result = session.createQuery( "from ContactData  where deprecated = '0000-00-00'" ).list();
     session.getTransaction().commit();
     session.close();
     return new Contacts(result);

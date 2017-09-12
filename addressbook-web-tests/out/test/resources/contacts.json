@@ -4,17 +4,5 @@
     "lastname": "test 0",
     "address": "address 0",
     "mail": "mail0@test.pl"
-  },
-  {
-    "firstname": "name 1",
-    "lastname": "test 1",
-    "address": "address 1",
-    "mail": "mail1@test.pl"
-  },
-  {
-    "firstname": "name 2",
-    "lastname": "test 2",
-    "address": "address 2",
-    "mail": "mail2@test.pl"
   }
 ]

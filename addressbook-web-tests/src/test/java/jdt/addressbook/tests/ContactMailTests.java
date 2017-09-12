@@ -19,8 +19,8 @@ public class ContactMailTests extends TestBase {
   }
   @BeforeMethod
   public void ensurePreconditions() {
-    app.goTo().contactPage();
-    if (app.contact().all().size()==0) {
+    if(app.db().contacts().size()==0){
+      app.goTo().contactPage();
       app.contact().create(new ContactData().withFirstname(properties.getProperty("web.firstname"))
               .withLastname(properties.getProperty("web.lastname"))
               .withAddress(properties.getProperty("web.addres")).withMail(properties.getProperty("web.mail"))
@@ -35,6 +35,7 @@ public class ContactMailTests extends TestBase {
   public void testContactMail(){
     app.goTo().contactPage();
     ContactData contact=app.contact().all().iterator().next();
+    app.goTo().contactPage();
     ContactData contactInfoFromEditForm =app.contact().infoFromEditForm(contact);
 
     assertThat(contact.getAllMails(), equalTo(mergeMails(contactInfoFromEditForm)));

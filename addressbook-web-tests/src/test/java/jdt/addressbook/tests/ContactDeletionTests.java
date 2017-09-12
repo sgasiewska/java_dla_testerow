@@ -2,6 +2,7 @@ package jdt.addressbook.tests;
 
 import jdt.addressbook.model.ContactData;
 import jdt.addressbook.model.Contacts;
+import jdt.addressbook.model.GroupData;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -18,8 +19,8 @@ public class ContactDeletionTests extends TestBase {
   }
   @BeforeMethod
   public void ensurePreconditions() {
-    app.goTo().contactPage();
-    if (app.contact().all().size()==0) {
+    if(app.db().contacts().size()==0){
+      app.goTo().contactPage();
       app.contact().create(new ContactData().withFirstname(properties.getProperty("web.firstname"))
               .withLastname(properties.getProperty("web.lastname"))
               .withAddress(properties.getProperty("web.addres")).withMail(properties.getProperty("web.mail"))
@@ -33,11 +34,11 @@ public class ContactDeletionTests extends TestBase {
     @Test
   public void testContactDeletion(){
 
-     Contacts before = app.contact().all();
+     Contacts before = app.db().contacts();
      ContactData deletedContact = before.iterator().next();
      app.contact().delete(deletedContact);
       assertThat(app.contact().count(),equalTo(before.size()-1));
-     Contacts after = app.contact().all();
+     Contacts after = app.db().contacts();
      assertThat(after,equalTo(before.without(deletedContact)));
 
    }
