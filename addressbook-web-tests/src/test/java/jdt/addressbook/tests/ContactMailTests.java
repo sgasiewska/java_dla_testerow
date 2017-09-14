@@ -39,7 +39,7 @@ public class ContactMailTests extends TestBase {
     ContactData contactInfoFromEditForm =app.contact().infoFromEditForm(contact);
 
     assertThat(contact.getAllMails(), equalTo(mergeMails(contactInfoFromEditForm)));
-
+    verifyContactListInUI();
   }
 
   private String mergeMails(ContactData contact) {

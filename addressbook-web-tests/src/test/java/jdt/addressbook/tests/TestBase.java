@@ -1,6 +1,7 @@
 package jdt.addressbook.tests;
 
 import jdt.addressbook.appmanager.ApplicationManager;
+import jdt.addressbook.model.Contacts;
 import jdt.addressbook.model.GroupData;
 import jdt.addressbook.model.Groups;
 import org.slf4j.Logger;
@@ -53,4 +54,13 @@ public class TestBase {
               .collect(Collectors.toSet())));
     }
   }
+
+  public void verifyContactListInUI() {
+    if (Boolean.getBoolean("verifyUI")) {
+      Contacts dbContacts = app.db().contacts();
+      Contacts uiContacts = app.contact().all();
+      assertThat(uiContacts, equalTo(dbContacts));
+    }
+  }
 }
+
