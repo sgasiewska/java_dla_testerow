@@ -5,6 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import com.thoughtworks.xstream.XStream;
 import jdt.addressbook.model.ContactData;
 import jdt.addressbook.model.Contacts;
+import jdt.addressbook.model.Groups;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -51,8 +52,10 @@ public class ContactCreationTests extends TestBase {
       return contacts.stream().map((g)-> new Object [] {g}).collect(Collectors.toList()).iterator();
     }
   }
-  @Test(dataProvider = "validContactsFromJson")
+ // @Test(dataProvider = "validContactsFromJson")
+  @Test(enabled = false)
   public void testContactCreation(ContactData contact) {
+    Groups groups =app.db().groups();
 
     app.goTo().contactPage();
     Contacts before= app.db().contacts();
@@ -62,6 +65,7 @@ public class ContactCreationTests extends TestBase {
     Contacts after = app.db().contacts();
     assertThat(after, equalTo(
             before.withAdded(contact.withId(after.stream().mapToInt((g)->g.getId()).max().getAsInt()))));
+    verifyContactListInUI();
   }
   @Test(enabled = false)
   public void testCurrentDir(){
@@ -76,13 +80,28 @@ public class ContactCreationTests extends TestBase {
   @Test (enabled = false)
   public void testBadContactCreation() {
 
+    Groups groups =app.db().groups();
     app.goTo().contactPage();
     Contacts before= app.contact().all();
-    ContactData contact =new ContactData().withFirstname("name1'").withLastname("test").withAddress("address").withMail("test@test.pl").withGroup("test1");
+    ContactData contact =new ContactData().withFirstname("name1'").withLastname("test").withAddress("address").withMail("test@test.pl");
+         //   .withGroup("test1");
     app.contact().create(contact, true);
     assertThat(app.contact().count(),equalTo(before.size()));
     Contacts after = app.contact().all();
     assertThat(after, equalTo(before));
     verifyContactListInUI();
+  }
+
+  @Test
+  public void testCreation2(){
+    Groups groups= app.db().groups();
+    File photo=new File("src/test/resources/kot.png");
+    ContactData newContact =new ContactData().withFirstname("name1'").withLastname("test").withAddress("address")
+            .withMail("test@test.pl").withPhoto(photo).inGroup(groups.iterator().next());
+    app.goTo().contactPage();
+    app.contact().initContactCreation();
+    app.contact().fillContactForm(newContact,true);
+    app.contact().submitContactCreation();
+    app.contact().returnToContactPage();
   }
 }
