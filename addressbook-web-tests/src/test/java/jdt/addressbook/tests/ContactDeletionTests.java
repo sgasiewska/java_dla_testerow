@@ -2,7 +2,6 @@ package jdt.addressbook.tests;
 
 import jdt.addressbook.model.ContactData;
 import jdt.addressbook.model.Contacts;
-import jdt.addressbook.model.GroupData;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 

@@ -2,6 +2,7 @@ package jdt.addressbook.appmanager;
 
 import jdt.addressbook.model.ContactData;
 import jdt.addressbook.model.Contacts;
+import jdt.addressbook.model.Groups;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -116,7 +117,7 @@ public class ContactHelper extends HelperBase {
     returnToContactPage();
   }
 
-  private void selectContactById(int id) {
+  public void selectContactById(int id) {
     wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
   }
 
@@ -171,9 +172,32 @@ public class ContactHelper extends HelperBase {
   public ContactData infoFromDetailsForm(ContactData contact) {
     initContactDetailsById(contact.getId());
     List<WebElement> wiersze = wd.findElements(By.xpath("//*[@id=\"content\"]"));
-    String allInformation =wiersze.get(0).getText();
+    String allInformation = wiersze.get(0).getText();
     wd.navigate().back();
-   return new ContactData().withAllInformations(allInformation);
+    return new ContactData().withAllInformations(allInformation);
 
+  }
+
+  public void chooseGroup(ContactData contact) {
+      new Select(wd.findElement(By.name("to_group")))
+              .selectByVisibleText(contact.getGroups().iterator().next().getName());
+  }
+
+  public void addContacttoGroup() {
+    click(By.name("add"));
+    click(By.xpath("//div/div[4]/div/i/a"));
+  }
+
+  private void returnToChoosenGroupPage() {
+    click(By.xpath("//div/div[4]/div/i/a"));
+  }
+
+  public void selectGroup(Groups groups) {
+    new Select(wd.findElement(By.name("group"))).selectByVisibleText(groups.iterator().next().getName());
+  }
+
+  public void deleteContactFromGroup() {
+    click(By.name("remove"));
+    click(By.xpath("//div/div[4]/div/i/a"));
   }
 }

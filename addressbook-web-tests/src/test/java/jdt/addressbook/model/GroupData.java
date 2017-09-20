@@ -25,9 +25,15 @@ public class GroupData {
   @Column(name= "group_name")
   private String name;
 
-  @ManyToMany(mappedBy = "groups")
 
-  private Set<ContactData> contats =new HashSet<ContactData>();
+  @ManyToMany  (mappedBy = "groups", fetch = FetchType.EAGER)
+
+  private Set<ContactData> contacts =new HashSet<ContactData>();
+
+  public Contacts getContacts(){
+    return new Contacts(contacts);
+  }
+//  public Set<ContactData> getContats() {return contacts;}
 
   @Override
   public boolean equals(Object o) {
@@ -78,9 +84,7 @@ public class GroupData {
     return footer;
   }
 
-  public Set<ContactData> getContats() {
-    return contats;
-  }
+
 
   @Override
   public String toString() {

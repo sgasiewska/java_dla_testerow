@@ -39,6 +39,7 @@ public class HbConnectionTests {
     session.beginTransaction();
   //  List result = session.createQuery( "from GroupData" ).list();
     List result = session.createQuery( "from ContactData where deprecated= '0000-00-00'" ).list();
+    //List result2 = session.createQuery("from address_in_groups where id = '95'").list();
  //   for ( GroupData group : (List <GroupData>) result) {
  //     System.out.println( group);
     /*  for ( ContactData contact : (List <ContactData>) result) {
