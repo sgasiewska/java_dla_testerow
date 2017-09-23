@@ -22,7 +22,7 @@ public class ApplicationManager {
   private String browser;
 
 
-  public ApplicationManager(String browser)  {
+  public ApplicationManager(String browser) {
 
     this.browser = browser;
     properties = new Properties();
@@ -34,13 +34,13 @@ public class ApplicationManager {
     String target = System.getProperty("target", "local");
     properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
 
-    if (Objects.equals(browser, BrowserType.FIREFOX)){
+    if (Objects.equals(browser, BrowserType.FIREFOX)) {
       wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true));
-    } else if (browser.equals(BrowserType.CHROME)){
-      wd= new ChromeDriver();
+    } else if (browser.equals(BrowserType.CHROME)) {
+      wd = new ChromeDriver();
 
-    } else if (Objects.equals(browser, BrowserType.IE)){
-      wd= new InternetExplorerDriver();
+    } else if (Objects.equals(browser, BrowserType.IE)) {
+      wd = new InternetExplorerDriver();
     }
 
     wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
@@ -54,4 +54,12 @@ public class ApplicationManager {
   }
 
 
+  public String getProperty(String key) {
+    return properties.getProperty(key);
+
+  }
+
+  public HttpSession newSession() {
+    return new HttpSession(this);
+  }
 }
