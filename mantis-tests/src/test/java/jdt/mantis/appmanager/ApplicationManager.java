@@ -34,6 +34,7 @@ public class ApplicationManager {
     String target = System.getProperty("target", "local");
     properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
 
+
     if (Objects.equals(browser, BrowserType.FIREFOX)) {
       wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true));
     } else if (browser.equals(BrowserType.CHROME)) {
@@ -47,6 +48,8 @@ public class ApplicationManager {
     wd.get(properties.getProperty("web.baseUrl"));
 
   }
+
+
 
 
   public void stop() {
