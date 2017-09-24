@@ -17,9 +17,10 @@ import java.util.concurrent.TimeUnit;
 public class ApplicationManager {
 
   private final Properties properties;
-  WebDriver wd;
+  private WebDriver wd;
 
   private String browser;
+  private RegistrationHelper registrationHelper;
 
 
   public ApplicationManager(String browser) {
@@ -34,26 +35,15 @@ public class ApplicationManager {
     String target = System.getProperty("target", "local");
     properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
 
-
-    if (Objects.equals(browser, BrowserType.FIREFOX)) {
-      wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true));
-    } else if (browser.equals(BrowserType.CHROME)) {
-      wd = new ChromeDriver();
-
-    } else if (Objects.equals(browser, BrowserType.IE)) {
-      wd = new InternetExplorerDriver();
-    }
-
-    wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
-    wd.get(properties.getProperty("web.baseUrl"));
-
   }
 
 
 
 
   public void stop() {
-    wd.quit();
+    if(wd!=null){
+      wd.quit();
+    }
   }
 
 
@@ -64,5 +54,32 @@ public class ApplicationManager {
 
   public HttpSession newSession() {
     return new HttpSession(this);
+  }
+
+  public RegistrationHelper registration() {
+    // jako parametr będzie przekazywany link na Application manager
+    if (registrationHelper ==null) {
+      registrationHelper = new RegistrationHelper(this);
+    }
+    return registrationHelper;
+  }
+//Leniwa inicjalizacja, met inincjalizoujaca sterownik w chwili pierwszego zwrócienia
+  //sterownik przeglądarki inicjalizuje się gdy ktoś się do niego zwróci
+  public WebDriver getDriver() {
+    // jeżeli nie jest zainicjowany wd to trzeba to zrobic
+    if(wd==null){
+      if (Objects.equals(browser, BrowserType.FIREFOX)) {
+        wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true));
+      } else if (browser.equals(BrowserType.CHROME)) {
+        wd = new ChromeDriver();
+
+      } else if (Objects.equals(browser, BrowserType.IE)) {
+        wd = new InternetExplorerDriver();
+      }
+      wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+      wd.get(properties.getProperty("web.baseUrl"));
+
+    }
+    return wd;
   }
 }
