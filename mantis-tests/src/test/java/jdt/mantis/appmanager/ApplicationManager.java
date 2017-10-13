@@ -21,8 +21,10 @@ public class ApplicationManager {
 
   private String browser;
   private RegistrationHelper registrationHelper;
+  private ChangePasswordHelper changePasswordHelper;
   private FtpHelper ftp;
   private MailHelper mailHelper;
+  private HBConnectionHelper hBConnectionHelper;
 
 
   public ApplicationManager(String browser) {
@@ -36,9 +38,8 @@ public class ApplicationManager {
   public void init() throws IOException {
     String target = System.getProperty("target", "local");
     properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
-
+    hBConnectionHelper = new HBConnectionHelper();
   }
-
 
 
 
@@ -47,7 +48,7 @@ public class ApplicationManager {
       wd.quit();
     }
   }
-
+  public HBConnectionHelper hBConnectionHelper() {    return hBConnectionHelper;  }
 
   public String getProperty(String key) {
     return properties.getProperty(key);
@@ -95,5 +96,13 @@ public class ApplicationManager {
       mailHelper = new MailHelper(this);
     }
     return mailHelper;
+  }
+
+  public ChangePasswordHelper changePassword() {
+    // jako parametr będzie przekazywany link na Application manager
+    if (changePasswordHelper ==null) {
+      changePasswordHelper = new ChangePasswordHelper(this);
+    }
+    return changePasswordHelper;
   }
 }
